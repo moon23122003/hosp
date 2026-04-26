@@ -53,27 +53,27 @@ if options==sign in:
     import mysql.connector
     mydb=mysql.connector.connect(host="127.0.0.1",user="root",passwd="",database="hp")
     my=mydb.cursor()
-
-st.title("SignIn")
-name=st.text_input("USER NAME")
-password=st.text_input("PASSWORD")
-b1=st.button("SIGNIN")
-valid=0
-if b1:
-       str1="select * from user_info where username="+"'"+name+"'"+" and pass="+"'"+password+"'"+""
-       my.execute(str1)
-       res=my.fetchall()
-       
-       for x in res:
-              st.success(x[0])
-              st.session_state['username'] = x[0]
-              st.session_state['password']=x[1]
-              st.switch_page("pages/profile.py")
-
-              
-              valid=valid+1
-       if valid==0:
-              st.success("Invalid Login")
+    
+    st.title("SignIn")
+    name=st.text_input("USER NAME")
+    password=st.text_input("PASSWORD")
+    b1=st.button("SIGNIN")
+    valid=0
+    if b1:
+        str1="select * from user_info where username="+"'"+name+"'"+" and pass="+"'"+password+"'"+""
+        my.execute(str1)
+        res=my.fetchall()
+        
+        for x in res:
+            st.success(x[0])
+            st.session_state['username'] = x[0]
+            st.session_state['password']=x[1]
+            st.switch_page("pages/profile.py")
+            
+            
+            valid=valid+1
+            if valid==0:
+                st.success("Invalid Login")
 
 #---------------sign up--------------
 if options==sign up:
@@ -107,43 +107,39 @@ if options==sign up:
     count=count+1
     
     if live_photo:
-       with open(str1,"wb") as f:
-                     f.write(live_photo.getvalue())
-def get_data():
-       st.success("Following Details Are Save Successfully....")
-       st.write(name)
-       st.write(password)
-       st.write(email)
-       st.write(age)
-       st.write(mobile)
-       st.write(g)
-       lang=""
-       if c1:
-              lang=lang+"Hin"+" "
-       if c2:
-              lang=lang+"Eng"+" "
-       if c3:
-              lang=lang+"Nag"+" "
-       if c4:
-              lang=lang+"Ban"+" "
-              
-       st.write(lang)
-       st.write(address)
-       st.write(dob)
-       st.write(photo)
-       st.write(color)
-       st.write(str1)
-       mydb=mysql.connector.connect(host="127.0.0.1",user="root",passwd="",database="hp")
-       my=mydb.cursor()
-       my.execute("insert into user_info values("+"'"+name+"'"+","+"'"+password+"'"+","+"'"+email+"'"+","+"'"+str(age)+"'"+","+"'"+mobile+"'"+","+"'"+g+"'"+","+"'"+lang+"'"+","+"'"+address+"'"+","+"'"+str(dob)+"'"+","+"'"+str1+"'"+")")
-       mydb.commit()
-       
-
-       
-       
-b1=st.button("SIGNUP")
-if b1:
-       get_data()
+        with open(str1,"wb") as f:
+            f.write(live_photo.getvalue())
+            def get_data():
+                st.success("Following Details Are Save Successfully....")
+                st.write(name)
+                st.write(password)
+                st.write(email)
+                st.write(age)
+                st.write(mobile)
+                st.write(g)
+                lang=""
+                if c1:
+                    lang=lang+"Hin"+" "
+                    if c2:
+                        lang=lang+"Eng"+" "
+                        if c3:
+                            lang=lang+"Nag"+" "
+                            if c4:
+                                lang=lang+"Ban"+" "
+                                st.write(lang)
+                                st.write(address)
+                                st.write(dob)
+                                st.write(photo)
+                                st.write(color)
+                                st.write(str1)
+                                mydb=mysql.connector.connect(host="127.0.0.1",user="root",passwd="",database="hp")
+                                my=mydb.cursor()
+                                my.execute("insert into user_info values("+"'"+name+"'"+","+"'"+password+"'"+","+"'"+email+"'"+","+"'"+str(age)+"'"+","+"'"+mobile+"'"+","+"'"+g+"'"+","+"'"+lang+"'"+","+"'"+address+"'"+","+"'"+str(dob)+"'"+","+"'"+str1+"'"+")")
+                                mydb.commit()
+                                
+                                b1=st.button("SIGNUP")
+                                if b1:
+                                    get_data()
 
 #--------------predict----------------
 if options==predict:
