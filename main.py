@@ -28,7 +28,7 @@ st.markdown('<p class="subtitle">Get instant health predictions based on symptom
 
 #-----------------navigation------------
 # Sidebar menu
-menu = st.sidebar.selectbox("Choose options", ["Home","about us","sign in","sign up","predict"])
+menu = st.sidebar.selectbox("Choose options", ["home","about","sign in","sign up","predict"])
 
 #--------home----------
 if options==home
